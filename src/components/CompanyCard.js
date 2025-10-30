@@ -12,6 +12,13 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import GroupIcon from '@mui/icons-material/Group';
 import EventIcon from '@mui/icons-material/Event';
 
+/**
+ * A card component for displaying company information.
+ * @param {{
+ *   company: { name: string, industry: string, location: string, employees: number, founded: number, website: string }
+ * }} props - The component props.
+ * @returns {JSX.Element} The CompanyCard component.
+ */
 const CompanyCard = ({ company }) => {
   return (
     <Card sx={{ marginBottom: 2 }}>

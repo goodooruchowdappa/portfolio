@@ -3,9 +3,22 @@ import apiClient from './apiClient';
 const isProduction = process.env.NODE_ENV === 'production';
 const COMPANIES_ENDPOINT = isProduction ? '/db.json' : '/companies';
 
+/**
+ * Fetches companies with optional filtering, sorting, and pagination.
+ * In production, this function fetches a static JSON file and manually
+ * applies the query parameters. In development, it queries a JSON Server API.
+ * @param {object} params - The query parameters.
+ * @returns {Promise<{data: object[], headers: {'x-total-count': number}}>}
+ */
 export const fetchCompanies = async (params = {}) => {
   if (!isProduction) {
-    return apiClient.get(COMPANIES_ENDPOINT, { params });
+    const apiParams = { ...params };
+    if (apiParams.foundedYear) {
+      apiParams.founded_gte = apiParams.foundedYear[0];
+      apiParams.founded_lte = apiParams.foundedYear[1];
+      delete apiParams.foundedYear;
+    }
+    return apiClient.get(COMPANIES_ENDPOINT, { params: apiParams });
   }
 
   const { data } = await apiClient.get(COMPANIES_ENDPOINT);
@@ -25,6 +38,13 @@ export const fetchCompanies = async (params = {}) => {
   if (params.location && params.location.length > 0) {
     companies = companies.filter((company) =>
       params.location.includes(company.location)
+    );
+  }
+  if (params.foundedYear) {
+    companies = companies.filter(
+      (company) =>
+        company.founded >= params.foundedYear[0] &&
+        company.founded <= params.foundedYear[1]
     );
   }
 
@@ -53,7 +73,15 @@ export const fetchCompanies = async (params = {}) => {
   return { data: companies, headers: { 'x-total-count': totalCount } };
 };
 
+/**
+ * Fetches all companies without any filtering, sorting, or pagination.
+ * This is used to populate the filter dropdowns.
+ * @returns {Promise<{data: object[]}>}
+ */
 export const fetchAllCompanies = async () => {
   const { data } = await apiClient.get(COMPANIES_ENDPOINT);
-  return { data: data.companies };
+  if (isProduction) {
+    return { data: data.companies };
+  }
+  return { data };
 }

@@ -6,7 +6,7 @@ export const loadCompanies = createAsyncThunk(
   async (params = {}, { rejectWithValue }) => {
     try {
       const response = await fetchCompanies(params);
-      return { data: response.data, totalCount: response.headers['x-total-count'] };
+      return { data: response.data, totalCount: response.headers['x-total-count'], page: params._page };
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -31,12 +31,18 @@ const initialState = {
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
   totalCount: 0,
+  hasMore: true,
 };
 
 const companiesSlice = createSlice({
   name: 'companies',
   initialState,
-  reducers: {},
+  reducers: {
+    resetCompanies: (state) => {
+      state.data = [];
+      state.hasMore = true;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadCompanies.pending, (state) => {
@@ -45,8 +51,13 @@ const companiesSlice = createSlice({
       })
       .addCase(loadCompanies.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload.data;
+        if (action.payload.page === 1) {
+          state.data = action.payload.data;
+        } else {
+          state.data = [...state.data, ...action.payload.data];
+        }
         state.totalCount = parseInt(action.payload.totalCount, 10);
+        state.hasMore = state.data.length < state.totalCount;
       })
       .addCase(loadCompanies.rejected, (state, action) => {
         state.status = 'failed';
@@ -58,10 +69,13 @@ const companiesSlice = createSlice({
   },
 });
 
+export const { resetCompanies } = companiesSlice.actions;
+
 export const selectCompanies = (state) => state.companies.data;
 export const selectAllCompanies = (state) => state.companies.allData;
 export const selectCompaniesStatus = (state) => state.companies.status;
 export const selectCompaniesError = (state) => state.companies.error;
 export const selectTotalCompanies = (state) => state.companies.totalCount;
+export const selectHasMoreCompanies = (state) => state.companies.hasMore;
 
 export default companiesSlice.reducer;

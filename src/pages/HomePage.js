@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
@@ -8,16 +8,30 @@ import {
   useTheme,
   Card,
   CardContent,
+  IconButton,
+  Collapse,
+  Button,
+  Drawer,
+  TextField,
+  Paper,
 } from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import {
   loadCompanies,
   loadAllCompanies,
+  resetCompanies,
   selectAllCompanies,
   selectCompanies,
   selectCompaniesStatus,
   selectCompaniesError,
   selectTotalCompanies,
+  selectHasMoreCompanies,
 } from '../features/companies/companiesSlice';
+import { useCompanyFilters } from '../hooks/useCompanyFilters';
+import { useCompanySorter } from '../hooks/useCompanySorter';
+import { useCompanyPaginator } from '../hooks/useCompanyPaginator';
+import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
+import { ROWS_PER_PAGE } from '../utils/constants';
 
 import Filters from '../components/Filters';
 import CompanyTable from '../components/CompanyTable';
@@ -30,29 +44,54 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const [showFilters, setShowFilters] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const companies = useSelector(selectCompanies);
   const allCompanies = useSelector(selectAllCompanies);
   const status = useSelector(selectCompaniesStatus);
   const error = useSelector(selectCompaniesError);
   const totalCount = useSelector(selectTotalCompanies);
+  const hasMore = useSelector(selectHasMoreCompanies);
 
-  const [filters, setFilters] = useState({ q: '', industry: [], location: [] });
-  const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' });
-  const [page, setPage] = useState(1);
-  const rowsPerPage = 10;
+  const { filters, handleFilterChange } = useCompanyFilters();
+  const { sortConfig, handleSort } = useCompanySorter({ key: 'name', direction: 'asc' });
+  const { page, handlePageChange, resetPage: resetPaginationPage } = useCompanyPaginator();
+
+  const areFiltersActive =
+    filters.q ||
+    filters.industry.length > 0 ||
+    filters.location.length > 0 ||
+    filters.foundedYear[0] !== 1980 ||
+    filters.foundedYear[1] !== 2024;
+
+  const {
+    page: infiniteScrollPage,
+    resetPage: resetInfiniteScrollPage,
+    lastElementRef,
+  } = useInfiniteScroll({
+    onLoadMore: (newPage) => {
+      if (!areFiltersActive) {
+        dispatch(loadCompanies({ _page: newPage, _limit: ROWS_PER_PAGE }));
+      }
+    },
+    hasMore,
+    isLoading: status === 'loading',
+  });
 
   useEffect(() => {
     dispatch(loadAllCompanies());
   }, [dispatch]);
 
   const loadFilteredCompanies = useCallback(() => {
+    const currentPage = areFiltersActive ? page : infiniteScrollPage;
     const params = {
-      _page: page,
-      _limit: rowsPerPage,
+      _page: currentPage,
+      _limit: ROWS_PER_PAGE,
       _sort: sortConfig.key,
       _order: sortConfig.direction,
       q: filters.q,
+      foundedYear: filters.foundedYear,
     };
     if (filters.industry.length) {
       params.industry = filters.industry;
@@ -61,32 +100,28 @@ const HomePage = () => {
       params.location = filters.location;
     }
     dispatch(loadCompanies(params));
-  }, [dispatch, page, sortConfig, filters]);
+  }, [dispatch, page, infiniteScrollPage, sortConfig, filters, areFiltersActive]);
+
+  useEffect(() => {
+    dispatch(resetCompanies());
+    resetPaginationPage();
+    resetInfiniteScrollPage();
+  }, [filters, sortConfig, dispatch, resetPaginationPage, resetInfiniteScrollPage]);
 
   useEffect(() => {
     loadFilteredCompanies();
   }, [loadFilteredCompanies]);
 
-  const handleFilterChange = useCallback((newFilters) => {
-    setPage(1);
-    setFilters(newFilters);
-  }, []);
+  const onFilterChange = useCallback((newFilters) => {
+    handleFilterChange(newFilters);
+  }, [handleFilterChange]);
 
-  const handleSort = (key) => {
-    setPage(1);
-    setSortConfig((prevConfig) => ({
-      key,
-      direction:
-        prevConfig.key === key && prevConfig.direction === 'asc' ? 'desc' : 'asc',
-    }));
-  };
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
+  const onSort = (key) => {
+    handleSort(key);
   };
 
   const renderContent = () => {
-    if (status === 'loading') {
+    if (status === 'loading' && companies.length === 0) {
       return <LoadingSpinner />;
     }
     if (status === 'failed') {
@@ -102,9 +137,19 @@ const HomePage = () => {
       );
     }
     return isDesktop ? (
-      <CompanyTable companies={companies} onSort={handleSort} sortConfig={sortConfig} />
+      <CompanyTable companies={companies} onSort={onSort} sortConfig={sortConfig} />
     ) : (
-      companies.map((company) => <CompanyCard key={company.id} company={company} />)
+      <>
+        {companies.map((company, index) => (
+          <div
+            key={company.id}
+            ref={index === companies.length - 1 ? lastElementRef : null}
+          >
+            <CompanyCard company={company} />
+          </div>
+        ))}
+        {status === 'loading' && <LoadingSpinner />}
+      </>
     );
   };
 
@@ -113,11 +158,54 @@ const HomePage = () => {
       <Typography variant="h4" component="h1" gutterBottom>
         Companies Directory
       </Typography>
-      <Filters onFilterChange={handleFilterChange} companies={allCompanies} />
+
+      {isDesktop ? (
+        <Paper elevation={2} sx={{ p: 2, mb: 2 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography variant="h6">Filters</Typography>
+            <IconButton
+              onClick={() => setShowFilters(!showFilters)}
+              data-testid="desktop-filter-button"
+            >
+              <FilterListIcon />
+            </IconButton>
+          </Box>
+          <Collapse in={showFilters}>
+            <Filters onFilterChange={onFilterChange} companies={allCompanies} />
+          </Collapse>
+        </Paper>
+      ) : (
+        <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+          <TextField
+            label="Search"
+            variant="outlined"
+            size="small"
+            sx={{ flexGrow: 1 }}
+            onChange={(e) => onFilterChange({ ...filters, q: e.target.value })}
+          />
+          <Button
+            variant="outlined"
+            startIcon={<FilterListIcon />}
+            onClick={() => setDrawerOpen(true)}
+          >
+            Filters
+          </Button>
+          <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+            <Box sx={{ width: 250, p: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Advanced Filters
+              </Typography>
+              <Filters onFilterChange={onFilterChange} companies={allCompanies} />
+            </Box>
+          </Drawer>
+        </Box>
+      )}
+
       <Box sx={{ mt: 4 }}>{renderContent()}</Box>
-      {totalCount > 0 && (
+
+      {totalCount > 0 && (isDesktop || areFiltersActive) && (
         <Pagination
-          count={Math.ceil(totalCount / rowsPerPage)}
+          count={Math.ceil(totalCount / ROWS_PER_PAGE)}
           page={page}
           onChange={handlePageChange}
         />

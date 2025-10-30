@@ -11,6 +11,15 @@ import {
   TableSortLabel,
 } from '@mui/material';
 
+/**
+ * A table component for displaying a list of companies.
+ * @param {{
+ *   companies: { id: number, name: string, industry: string, location: string, employees: number, founded: number, website: string }[],
+ *   onSort: (key: string) => void,
+ *   sortConfig: { key: string, direction: 'asc' | 'desc' }
+ * }} props - The component props.
+ * @returns {JSX.Element} The CompanyTable component.
+ */
 const CompanyTable = ({ companies, onSort, sortConfig }) => {
   const createSortHandler = (property) => (event) => {
     onSort(property);
