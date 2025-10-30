@@ -23,7 +23,6 @@ import {
  * @returns {JSX.Element} The Filters component.
  */
 const Filters = ({ onFilterChange, companies = [] }) => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndustries, setSelectedIndustries] = useState([]);
   const [selectedLocations, setSelectedLocations] = useState([]);
   const [foundedYear, setFoundedYear] = useState([1980, 2024]);
@@ -32,16 +31,12 @@ const Filters = ({ onFilterChange, companies = [] }) => {
   const locations = useMemo(() => [...new Set(companies.map((c) => c.location))], [companies]);
 
   useEffect(() => {
-    const handler = setTimeout(() => {
-      onFilterChange({
-        q: searchTerm,
-        industry: selectedIndustries,
-        location: selectedLocations,
-        foundedYear,
-      });
-    }, 500); // Debounce search term
-    return () => clearTimeout(handler);
-  }, [searchTerm, selectedIndustries, selectedLocations, foundedYear, onFilterChange]);
+    onFilterChange({
+      industry: selectedIndustries,
+      location: selectedLocations,
+      foundedYear,
+    });
+  }, [selectedIndustries, selectedLocations, foundedYear, onFilterChange]);
 
   const handleIndustryChange = (event) => {
     const {
@@ -64,15 +59,6 @@ const Filters = ({ onFilterChange, companies = [] }) => {
   return (
     <Paper elevation={3} sx={{ p: 2, mb: 2 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TextField
-            label="Search Companies"
-            variant="outlined"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            fullWidth
-          />
-        </Grid>
         <Grid item xs={12} sm={6}>
           <FormControl fullWidth>
             <InputLabel>Industry</InputLabel>

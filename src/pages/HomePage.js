@@ -165,30 +165,25 @@ const HomePage = () => {
         Companies Directory
       </Typography>
 
-      {isDesktop ? (
-        <Paper elevation={2} sx={{ p: 2, mb: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="h6">Filters</Typography>
-            <IconButton
-              onClick={() => setShowFilters(!showFilters)}
-              data-testid="desktop-filter-button"
-            >
-              <FilterListIcon />
-            </IconButton>
-          </Box>
-          <Collapse in={showFilters}>
-            <Filters onFilterChange={onFilterChange} companies={allCompanies} />
-          </Collapse>
-        </Paper>
-      ) : (
-        <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-          <TextField
-            label="Search"
+      <Box sx={{ display: 'flex', gap: 2, mb: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+        <TextField
+          label="Search by company name"
+          variant="outlined"
+          size="small"
+          value={filters.q}
+          onChange={(e) => onFilterChange({ ...filters, q: e.target.value })}
+          sx={{ flexGrow: 1, minWidth: '200px' }}
+        />
+        {isDesktop ? (
+          <Button
             variant="outlined"
-            size="small"
-            sx={{ flexGrow: 1 }}
-            onChange={(e) => onFilterChange({ ...filters, q: e.target.value })}
-          />
+            startIcon={<FilterListIcon />}
+            onClick={() => setShowFilters(!showFilters)}
+            data-testid="desktop-filter-button"
+          >
+            {showFilters ? 'Hide' : 'Show'} Filters
+          </Button>
+        ) : (
           <Button
             variant="outlined"
             startIcon={<FilterListIcon />}
@@ -196,15 +191,34 @@ const HomePage = () => {
           >
             Filters
           </Button>
-          <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-            <Box sx={{ width: 250, p: 2 }}>
-              <Typography variant="h6" gutterBottom>
-                Advanced Filters
-              </Typography>
-              <Filters onFilterChange={onFilterChange} companies={allCompanies} />
-            </Box>
-          </Drawer>
-        </Box>
+        )}
+      </Box>
+
+      {isDesktop ? (
+        <Collapse in={showFilters}>
+          <Paper elevation={2} sx={{ p: 2, mb: 2 }}>
+            <Filters
+              onFilterChange={onFilterChange}
+              companies={allCompanies}
+              filters={filters}
+              isSearchVisible={false}
+            />
+          </Paper>
+        </Collapse>
+      ) : (
+        <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+          <Box sx={{ width: 250, p: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              Advanced Filters
+            </Typography>
+            <Filters
+              onFilterChange={onFilterChange}
+              companies={allCompanies}
+              filters={filters}
+              isSearchVisible={false}
+            />
+          </Box>
+        </Drawer>
       )}
 
       <Box sx={{ mt: 4 }}>{renderContent()}</Box>

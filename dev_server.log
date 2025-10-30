@@ -1,0 +1,3 @@
+
+> companies-directory@0.1.0 dev
+> concurrently "npm run server" "npm run start"
