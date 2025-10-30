@@ -1,0 +1,238 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "TechCorp",
+      "industry": "Software",
+      "location": "San Francisco",
+      "employees": 250,
+      "founded": 2015,
+      "website": "https://techcorp.com"
+    },
+    {
+      "id": 2,
+      "name": "GreenEnergy Ltd",
+      "industry": "Renewable Energy",
+      "location": "London",
+      "employees": 180,
+      "founded": 2018,
+      "website": "https://greenenergy.co.uk"
+    },
+    {
+      "id": 3,
+      "name": "FinTrust Bank",
+      "industry": "Finance",
+      "location": "New York",
+      "employees": 500,
+      "founded": 2010,
+      "website": "https://fintrust.com"
+    },
+    {
+      "id": 4,
+      "name": "MediCare Plus",
+      "industry": "Healthcare",
+      "location": "Chicago",
+      "employees": 320,
+      "founded": 2012,
+      "website": "https://medicareplus.com"
+    },
+    {
+      "id": 5,
+      "name": "ShopSmart",
+      "industry": "Retail",
+      "location": "Los Angeles",
+      "employees": 800,
+      "founded": 2008,
+      "website": "https://shopsmart.com"
+    },
+    {
+      "id": 6,
+      "name": "Innovate AI",
+      "industry": "AI",
+      "location": "Palo Alto",
+      "employees": 120,
+      "founded": 2019,
+      "website": "https://innovateai.com"
+    },
+    {
+      "id": 7,
+      "name": "LogiPro",
+      "industry": "Logistics",
+      "location": "Dallas",
+      "employees": 400,
+      "founded": 2014,
+      "website": "https://logipro.com"
+    },
+    {
+      "id": 8,
+      "name": "BioGenetics",
+      "industry": "Biotechnology",
+      "location": "Boston",
+      "employees": 150,
+      "founded": 2017,
+      "website": "https://biogenetics.com"
+    },
+    {
+      "id": 9,
+      "name": "ConstructWell",
+      "industry": "Construction",
+      "location": "Houston",
+      "employees": 600,
+      "founded": 2005,
+      "website": "https://constructwell.com"
+    },
+    {
+      "id": 10,
+      "name": "EduLearn",
+      "industry": "Education",
+      "location": "Seattle",
+      "employees": 90,
+      "founded": 2020,
+      "website": "https://edulearn.com"
+    },
+    {
+      "id": 11,
+      "name": "AutoDrive",
+      "industry": "Automotive",
+      "location": "Detroit",
+      "employees": 1200,
+      "founded": 2011,
+      "website": "https://autodrive.com"
+    },
+    {
+      "id": 12,
+      "name": "FoodFirst",
+      "industry": "Food & Beverage",
+      "location": "Miami",
+      "employees": 220,
+      "founded": 2016,
+      "website": "https://foodfirst.com"
+    },
+    {
+      "id": 13,
+      "name": "AeroSpace Dynamics",
+      "industry": "Aerospace",
+      "location": "Denver",
+      "employees": 900,
+      "founded": 2009,
+      "website": "https://aerospacedynamics.com"
+    },
+    {
+      "id": 14,
+      "name": "MediaStream",
+      "industry": "Entertainment",
+      "location": "Culver City",
+      "employees": 350,
+      "founded": 2013,
+      "website": "https://mediastream.com"
+    },
+    {
+      "id": 15,
+      "name": "StyleHub",
+      "industry": "Fashion",
+      "location": "Paris",
+      "employees": 180,
+      "founded": 2018,
+      "website": "https://stylehub.com"
+    },
+    {
+      "id": 16,
+      "name": "DataSecure",
+      "industry": "Cybersecurity",
+      "location": "Washington D.C.",
+      "employees": 210,
+      "founded": 2017,
+      "website": "https://datasecure.com"
+    },
+    {
+      "id": 17,
+      "name": "EcoBuilders",
+      "industry": "Construction",
+      "location": "Austin",
+      "employees": 150,
+      "founded": 2019,
+      "website": "https://ecobuilders.com"
+    },
+    {
+      "id": 18,
+      "name": "Quantum Innovations",
+      "industry": "AI",
+      "location": "Toronto",
+      "employees": 80,
+      "founded": 2021,
+      "website": "https://quantuminnovations.com"
+    },
+    {
+      "id": 19,
+      "name": "PharmaSolutions",
+      "industry": "Healthcare",
+      "location": "Berlin",
+      "employees": 400,
+      "founded": 2014,
+      "website": "https://pharmasolutions.com"
+    },
+    {
+      "id": 20,
+      "name": "Global Traders",
+      "industry": "Finance",
+      "location": "Singapore",
+      "employees": 300,
+      "founded": 2012,
+      "website": "https://globaltraders.com"
+    },
+    {
+      "id": 21,
+      "name": "AgriGrow",
+      "industry": "Agriculture",
+      "location": "Des Moines",
+      "employees": 120,
+      "founded": 2016,
+      "website": "https://agrigrow.com"
+    },
+    {
+      "id": 22,
+      "name": "ConnectSphere",
+      "industry": "Telecommunications",
+      "location": "Tokyo",
+      "employees": 1500,
+      "founded": 2007,
+      "website": "https://connectsphere.com"
+    },
+    {
+      "id": 23,
+      "name": "HomeGoods Inc.",
+      "industry": "Retail",
+      "location": "Atlanta",
+      "employees": 600,
+      "founded": 2010,
+      "website": "https://homegoods.com"
+    },
+    {
+      "id": 24,
+      "name": "Venture Capitalists",
+      "industry": "Venture Capital",
+      "location": "Menlo Park",
+      "employees": 50,
+      "founded": 2019,
+      "website": "https://venturecapitalists.com"
+    },
+    {
+      "id": 25,
+      "name": "CloudNine",
+      "industry": "Software",
+      "location": "Bangalore",
+      "employees": 350,
+      "founded": 2018,
+      "website": "https://cloudnine.com"
+    },
+    {
+      "id": 26,
+      "name": "HealthEats",
+      "industry": "Food & Beverage",
+      "location": "Portland",
+      "employees": 90,
+      "founded": 2020,
+      "website": "https://healtheats.com"
+    }
+  ]
+}

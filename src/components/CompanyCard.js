@@ -1,0 +1,46 @@
+import React from 'react';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  Link,
+  Chip,
+} from '@mui/material';
+import BusinessIcon from '@mui/icons-material/Business';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import GroupIcon from '@mui/icons-material/Group';
+import EventIcon from '@mui/icons-material/Event';
+
+const CompanyCard = ({ company }) => {
+  return (
+    <Card sx={{ marginBottom: 2 }}>
+      <CardContent>
+        <Typography variant="h6" component="div" gutterBottom>
+          {company.name}
+        </Typography>
+        <Chip label={company.industry} color="primary" sx={{ mb: 1 }} />
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <LocationOnIcon sx={{ mr: 1 }} color="action" />
+          <Typography variant="body2">{company.location}</Typography>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <GroupIcon sx={{ mr: 1 }} color="action" />
+          <Typography variant="body2">{company.employees} Employees</Typography>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <EventIcon sx={{ mr: 1 }} color="action" />
+          <Typography variant="body2">Founded in {company.founded}</Typography>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+          <BusinessIcon sx={{ mr: 1 }} color="action" />
+          <Link href={company.website} target="_blank" rel="noopener">
+            Visit Website
+          </Link>
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default CompanyCard;
