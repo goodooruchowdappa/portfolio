@@ -1,0 +1,279 @@
+{
+  "companies": [
+    {
+      "id": 1,
+      "name": "TechCorp",
+      "industry": "Software",
+      "location": "San Francisco",
+      "employees": 250,
+      "founded": 2015,
+      "website": "https://techcorp.com",
+      "about": "TechCorp is a leading innovator in cloud-based software solutions, empowering businesses to achieve digital transformation.",
+      "logoUrl": "https://via.placeholder.com/150/92c952"
+    },
+    {
+      "id": 2,
+      "name": "GreenEnergy Ltd",
+      "industry": "Renewable Energy",
+      "location": "London",
+      "employees": 180,
+      "founded": 2018,
+      "website": "https://greenenergy.co.uk",
+      "about": "GreenEnergy Ltd is dedicated to providing clean, sustainable energy solutions to power a greener future for generations to come.",
+      "logoUrl": "https://via.placeholder.com/150/771796"
+    },
+    {
+      "id": 3,
+      "name": "FinSecure",
+      "industry": "Finance",
+      "location": "New York",
+      "employees": 500,
+      "founded": 2010,
+      "website": "https://finsecure.com",
+      "about": "FinSecure offers comprehensive financial planning and investment services, helping clients build and protect their wealth.",
+      "logoUrl": "https://via.placeholder.com/150/24f355"
+    },
+    {
+      "id": 4,
+      "name": "HealthWell",
+      "industry": "Healthcare",
+      "location": "Boston",
+      "employees": 1200,
+      "founded": 2005,
+      "website": "https://healthwell.org",
+      "about": "HealthWell is a non-profit organization committed to improving patient access to healthcare through advanced medical research and support.",
+      "logoUrl": "https://via.placeholder.com/150/d32776"
+    },
+    {
+      "id": 5,
+      "name": "ShopSmart",
+      "industry": "Retail",
+      "location": "Chicago",
+      "employees": 800,
+      "founded": 2012,
+      "website": "https://shopsmart.com",
+      "about": "ShopSmart is a leading e-commerce platform offering a wide variety of products with a focus on customer satisfaction and convenience.",
+      "logoUrl": "https://via.placeholder.com/150/f66b97"
+    },
+    {
+      "id": 6,
+      "name": "InnovateAI",
+      "industry": "AI",
+      "location": "Austin",
+      "employees": 150,
+      "founded": 2020,
+      "website": "https://innovateai.com",
+      "about": "InnovateAI is at the forefront of artificial intelligence, developing cutting-edge machine learning models for enterprise applications.",
+      "logoUrl": "https://via.placeholder.com/150/56a8c2"
+    },
+    {
+      "id": 7,
+      "name": "LogiPro",
+      "industry": "Logistics",
+      "location": "Los Angeles",
+      "employees": 400,
+      "founded": 2016,
+      "website": "https://logipro.net",
+      "about": "LogiPro provides streamlined supply chain solutions, optimizing warehousing, transportation, and delivery for global businesses.",
+      "logoUrl": "https://via.placeholder.com/150/b0f7cc"
+    },
+    {
+      "id": 8,
+      "name": "EduFuture",
+      "industry": "Education",
+      "location": "Seattle",
+      "employees": 300,
+      "founded": 2017,
+      "website": "https://edufuture.com",
+      "about": "EduFuture is an online learning platform offering courses from top universities and industry experts to empower lifelong learners.",
+      "logoUrl": "https://via.placeholder.com/150/54176f"
+    },
+    {
+      "id": 9,
+      "name": "AutoMotion",
+      "industry": "Automotive",
+      "location": "Detroit",
+      "employees": 2500,
+      "founded": 2008,
+      "website": "https://automotion.com",
+      "about": "AutoMotion is a pioneer in electric vehicle technology, designing and manufacturing the next generation of sustainable transportation.",
+      "logoUrl": "https://via.placeholder.com/150/51aa97"
+    },
+    {
+      "id": 10,
+      "name": "BuildRight",
+      "industry": "Construction",
+      "location": "Houston",
+      "employees": 600,
+      "founded": 2002,
+      "website": "https://buildright.com",
+      "about": "BuildRight specializes in commercial and residential construction, delivering high-quality projects on time and within budget.",
+      "logoUrl": "https://via.placeholder.com/150/810b14"
+    },
+    {
+      "id": 11,
+      "name": "FoodFirst",
+      "industry": "Food & Beverage",
+      "location": "Miami",
+      "employees": 950,
+      "founded": 2011,
+      "website": "https://foodfirst.com",
+      "about": "FoodFirst is a farm-to-table company that partners with local growers to provide fresh, organic produce to restaurants and consumers.",
+      "logoUrl": "https://via.placeholder.com/150/1ee8a4"
+    },
+    {
+      "id": 12,
+      "name": "AeroDynamics",
+      "industry": "Aerospace",
+      "location": "Denver",
+      "employees": 1800,
+      "founded": 1998,
+      "website": "https://aerodynamics.com",
+      "about": "AeroDynamics is a key player in the aerospace industry, manufacturing components for commercial aircraft and space exploration vehicles.",
+      "logoUrl": "https://via.placeholder.com/150/66b7d2"
+    },
+    {
+      "id": 13,
+      "name": "ConnectSphere",
+      "industry": "Telecommunications",
+      "location": "Dallas",
+      "employees": 3200,
+      "founded": 2000,
+      "website": "https://connectsphere.com",
+      "about": "ConnectSphere provides reliable, high-speed internet and mobile services to connect communities across the country.",
+      "logoUrl": "https://via.placeholder.com/150/197d29"
+    },
+    {
+      "id": 14,
+      "name": "BioGenetics",
+      "industry": "Biotechnology",
+      "location": "San Diego",
+      "employees": 450,
+      "founded": 2019,
+      "website": "https://biogenetics.com",
+      "about": "BioGenetics is a research-focused company developing innovative therapies to treat rare genetic disorders.",
+      "logoUrl": "https://via.placeholder.com/150/61a65"
+    },
+    {
+      "id": 15,
+      "name": "MediaMingle",
+      "industry": "Media",
+      "location": "New York",
+      "employees": 700,
+      "founded": 2013,
+      "website": "https://mediamingle.com",
+      "about": "MediaMingle is a digital marketing agency that helps brands create engaging content and connect with their audiences on social media.",
+      "logoUrl": "https://via.placeholder.com/150/f9cee5"
+    },
+    {
+      "id": 16,
+      "name": "CyberSafe",
+      "industry": "Cybersecurity",
+      "location": "Washington D.C.",
+      "employees": 220,
+      "founded": 2021,
+      "website": "https://cybersafe.com",
+      "about": "CyberSafe provides advanced threat detection and response services to protect organizations from evolving cyber threats.",
+      "logoUrl": "https://via.placeholder.com/150/40a494"
+    },
+    {
+      "id": 17,
+      "name": "Gamer's Guild",
+      "industry": "Gaming",
+      "location": "Las Vegas",
+      "employees": 550,
+      "founded": 2014,
+      "website": "https://gamersguild.com",
+      "about": "Gamer's Guild develops immersive, story-driven video games for PC and console platforms, captivating players worldwide.",
+      "logoUrl": "https://via.placeholder.com/150/35185e"
+    },
+    {
+      "id": 18,
+      "name": "PharmaPlus",
+      "industry": "Pharmaceuticals",
+      "location": "Philadelphia",
+      "employees": 4000,
+      "founded": 1995,
+      "website": "https://pharmaplus.com",
+      "about": "PharmaPlus is a global pharmaceutical company dedicated to discovering and developing life-saving medicines.",
+      "logoUrl": "https://via.placeholder.com/150/e9b68"
+    },
+    {
+      "id": 19,
+      "name": "TravelWise",
+      "industry": "Travel",
+      "location": "Orlando",
+      "employees": 120,
+      "founded": 2018,
+      "website": "https://travelwise.com",
+      "about": "TravelWise is a modern travel agency that curates unique, personalized travel experiences for adventurous explorers.",
+      "logoUrl": "https://via.placeholder.com/150/8f209a"
+    },
+    {
+      "id": 20,
+      "name": "HomeComfort",
+      "industry": "Real Estate",
+      "location": "Phoenix",
+      "employees": 350,
+      "founded": 2007,
+      "website": "https://homecomfort.com",
+      "about": "HomeComfort is a real estate firm that simplifies the process of buying and selling homes with expert agents and innovative technology.",
+      "logoUrl": "https://via.placeholder.com/150/5e3a73"
+    },
+    {
+      "id": 21,
+      "name": "AquaPure",
+      "industry": "Utilities",
+      "location": "Atlanta",
+      "employees": 1100,
+      "founded": 2001,
+      "website": "https://aquapure.com",
+      "about": "AquaPure manages water and wastewater services for municipalities, ensuring safe and reliable access for communities.",
+      "logoUrl": "https://via.placeholder.com/150/2428ba"
+    },
+    {
+      "id": 22,
+      "name": "StyleSphere",
+      "industry": "Fashion",
+      "location": "Paris",
+      "employees": 280,
+      "founded": 2016,
+      "website": "https://stylesphere.com",
+      "about": "StyleSphere is an online fashion boutique that features collections from emerging designers and sustainable brands.",
+      "logoUrl": "https://via.placeholder.com/150/7644fe"
+    },
+    {
+      "id": 23,
+      "name": "MindWell",
+      "industry": "Mental Health",
+      "location": "Toronto",
+      "employees": 90,
+      "founded": 2022,
+      "website": "https://mindwell.com",
+      "about": "MindWell is a digital platform offering accessible and affordable mental health support through therapy, coaching, and self-care tools.",
+      "logoUrl": "https://via.placeholder.com/150/365691"
+    },
+    {
+      "id": 24,
+      "name": "PetPalace",
+      "industry": "Pet Care",
+      "location": "Portland",
+      "employees": 180,
+      "founded": 2017,
+      "website": "https://petpalace.com",
+      "about": "PetPalace offers a wide range of pet supplies, grooming services, and veterinary care to keep beloved pets happy and healthy.",
+      "logoUrl": "https://via.placeholder.com/150/9e59da"
+    },
+    {
+      "id": 25,
+      "name": "QuantumLeap",
+      "industry": "Quantum Computing",
+      "location": "Cambridge",
+      "employees": 75,
+      "founded": 2023,
+      "website": "https://quantumleap.com",
+      "about": "QuantumLeap is a research startup pushing the boundaries of quantum computing to solve complex problems previously thought unsolvable.",
+      "logoUrl": "https://via.placeholder.com/150/2962c3"
+    }
+  ]
+}

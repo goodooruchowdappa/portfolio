@@ -26,6 +26,9 @@ import {
   selectCompaniesError,
   selectTotalCompanies,
   selectHasMoreCompanies,
+  selectSelectedCompany,
+  selectIsModalOpen,
+  closeCompanyModal,
 } from '../features/companies/companiesSlice';
 import { useCompanyFilters } from '../hooks/useCompanyFilters';
 import { useCompanySorter } from '../hooks/useCompanySorter';
@@ -39,6 +42,7 @@ import CompanyCard from '../components/CompanyCard';
 import Pagination from '../components/Pagination';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorAlert from '../components/ErrorAlert';
+import CompanyDetails from '../components/CompanyDetails';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -53,6 +57,8 @@ const HomePage = () => {
   const error = useSelector(selectCompaniesError);
   const totalCount = useSelector(selectTotalCompanies);
   const hasMore = useSelector(selectHasMoreCompanies);
+  const selectedCompany = useSelector(selectSelectedCompany);
+  const isModalOpen = useSelector(selectIsModalOpen);
 
   const { filters, handleFilterChange } = useCompanyFilters();
   const { sortConfig, handleSort } = useCompanySorter({ key: 'name', direction: 'asc' });
@@ -210,6 +216,11 @@ const HomePage = () => {
           onChange={handlePageChange}
         />
       )}
+      <CompanyDetails
+        company={selectedCompany}
+        open={isModalOpen}
+        onClose={() => dispatch(closeCompanyModal())}
+      />
     </Container>
   );
 };

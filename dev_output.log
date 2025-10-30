@@ -1,0 +1,12 @@
+
+> companies-directory@0.1.0 dev
+> concurrently "npm run server" "npm run start"
+
+[0]
+[0] > companies-directory@0.1.0 server
+[0] > node server.js
+[0]
+[1]
+[1] > companies-directory@0.1.0 start
+[1] > react-scripts start
+[1]

@@ -32,6 +32,8 @@ const initialState = {
   error: null,
   totalCount: 0,
   hasMore: true,
+  selectedCompany: null,
+  isModalOpen: false,
 };
 
 const companiesSlice = createSlice({
@@ -41,6 +43,14 @@ const companiesSlice = createSlice({
     resetCompanies: (state) => {
       state.data = [];
       state.hasMore = true;
+    },
+    openCompanyModal: (state, action) => {
+      state.selectedCompany = action.payload;
+      state.isModalOpen = true;
+    },
+    closeCompanyModal: (state) => {
+      state.selectedCompany = null;
+      state.isModalOpen = false;
     },
   },
   extraReducers: (builder) => {
@@ -69,7 +79,7 @@ const companiesSlice = createSlice({
   },
 });
 
-export const { resetCompanies } = companiesSlice.actions;
+export const { resetCompanies, openCompanyModal, closeCompanyModal } = companiesSlice.actions;
 
 export const selectCompanies = (state) => state.companies.data;
 export const selectAllCompanies = (state) => state.companies.allData;
@@ -77,5 +87,7 @@ export const selectCompaniesStatus = (state) => state.companies.status;
 export const selectCompaniesError = (state) => state.companies.error;
 export const selectTotalCompanies = (state) => state.companies.totalCount;
 export const selectHasMoreCompanies = (state) => state.companies.hasMore;
+export const selectSelectedCompany = (state) => state.companies.selectedCompany;
+export const selectIsModalOpen = (state) => state.companies.isModalOpen;
 
 export default companiesSlice.reducer;
